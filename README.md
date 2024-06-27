@@ -1,3 +1,36 @@
-The provided Python script efficiently reads an Excel file containing required indexes - NDPI (Normalized Difference Pond Index), NDTI (Normalized Difference Turbidity Index), NDVI (Normalized Difference Vegetation Index) and NDWI (Normalized Difference Water Index) data, which has been processed by Naturasat software, into a pandas DataFrame. The script then visualizes this data using a bar chart with matplotlib. By setting the 'Curve_name' column as the index, the plot is clear and well-organized. The chart is customized with specific colors, titles, labels, and a grid for better readability and presentation. This approach allows for an intuitive visual analysis of the index statistics, facilitating easier interpretation of the data patterns and trends. This method can be a valuable tool for researchers and analysts working with environmental and geographical datasets processed by Naturasat software.
+# Visualizing Index Data from NaturaSat with Python
 
-The NaturaSat software integrates various image processing techniques together with vegetation data, into one multipurpose tool that is designed for performing facilities for all requirements of habitat exploration, all in one place. It provides direct access to multispectral Sentinel-2 data provided by the European Space Agency. It supports using these data with various vegetation databases, in a user-friendly environment, for, e.g., vegetation scientists, fieldwork experts, and nature conservationists.
+## Description
+This Python script reads an Excel file containing various environmental indexes processed by NaturaSat software into a pandas DataFrame. It then visualizes the data using a bar chart with matplotlib, making the analysis of patterns and trends intuitive. The script customizes the chart with specific colors, titles, labels, and a grid for better readability and presentation. This method is particularly useful for researchers and analysts working with environmental and geographical datasets.
+
+## How to Use
+
+### Prerequisites
+- Ensure you have Python installed on your system.
+- Install the necessary Python libraries: `pandas` and `matplotlib`.
+
+```sh
+pip install pandas matplotlib
+
+import pandas as pd
+
+# Read the Excel file into a DataFrame
+df = pd.read_excel('C:\\NaturaSat_Kelko\\Naturasat_Kelko\\Hores2_march_gps\\NDPI_Hores2_march_gps.xlsx')
+
+# Set Curve_name as the index for easier plotting
+df.set_index('Curve_name', inplace=True)
+
+import matplotlib.pyplot as plt
+
+# Plotting with custom colors
+ax = df.plot(kind='bar', figsize=(10, 5), color=['blue', 'green', 'orange'])
+plt.title('24-03-14 | NDPI - Normalized Difference Pond Index')
+plt.xlabel('Curve_name')
+plt.ylabel('Values')
+plt.xticks(rotation=90)
+plt.grid(True)
+plt.legend(title='Statistics')
+plt.tight_layout()
+plt.show()
+
+python script_name.py
